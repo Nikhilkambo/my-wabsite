@@ -8,7 +8,7 @@ function sendMail(name, email, phone, message) {
         phone: phone,
         message: message,
     }
-    console.log(params)
+    
     emailjs.send("service_84bsbia", "template_phpzjar", params).then((res) => {
         if (res.status === 200) {
             success();
