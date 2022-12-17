@@ -1,7 +1,6 @@
 //Send emailJs
 
 function sendMail(name, email, phone, message) {
-    console.log("this is run")
     var params = {
         form_name: name,
         email: email,
