@@ -7,14 +7,18 @@ function sendMail(name, email, phone, message) {
         phone: phone,
         message: message,
     }
-    
+
     emailjs.send("service_84bsbia", "template_phpzjar", params).then((res) => {
         if (res.status === 200) {
             success();
             complete();
+            preload.style = "display:none";
+
         } else {
+
             error(name)
             complete();
+            preload.style = "display:none";
         }
 
         function success() {
@@ -60,7 +64,11 @@ function sendMail(name, email, phone, message) {
         }
     })
 
+
+
 }
+
+
 $(function() {
 
     $(
@@ -77,6 +85,7 @@ $(function() {
             var email = $("input#email").val();
             var phone = $("input#phone").val();
             var message = $("textarea#message").val();
+            var preload = document.getElementById("preload")
             var firstName = name; // For Success/Failure Message
             // Check for white space in name for Success/Fail message
             if (firstName.indexOf(" ") >= 0) {
@@ -85,6 +94,7 @@ $(function() {
             $this = $("#sendMessageButton");
             $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
             sendMail(firstName, email, phone, message);
+            preload.style = "display:inline"
         },
         filter: function() {
             return $(this).is(":visible");
